@@ -64,4 +64,19 @@ vim.opt.scrolloff = 10
 
 vim.opt.winbar = '%=%m %f'
 
+-- cursorline on in normal mode
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
+  callback = function()
+    vim.opt.cursorline = true
+    vim.opt.cursorcolumn = true
+  end,
+})
+-- no Cursorline in insert mode
+vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  callback = function()
+    vim.opt.cursorline = false
+    vim.opt.cursorcolumn = false
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
